@@ -144,9 +144,9 @@ function makeBuddies() {
 
 function leaveTheShire() {
   // grab the hobbits and move them to Rivendell
-  // const moveHobbits = document.getElementById('The Shire');
-  // var grabUl = document.getElementsByTagName('ul');
-  // console.log(shift);
+  const moveHobbits = document.getElementById('The Shire');
+  var grabUl = document.getElementsByTagName('ul');
+  console.log(grabUl);
   // Riverdell.appendChild(grabUl);
 };
 
