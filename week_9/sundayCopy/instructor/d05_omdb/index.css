@@ -1,0 +1,34 @@
+#playlist {
+    max-width: 80%;
+    border: 1px solid #efefef;
+    padding: 10px;
+    margin-top: 30px;
+    display: none;
+  }
+  
+  #playlist.hasMovies {
+    display: block;
+  }
+  
+  .movie {
+    border-bottom: 1px solid;
+    padding-bottom: 30px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .movie.added {
+    opacity: 1;
+  }
+  
+  .movie:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .movie img {
+    float: left;
+    margin-right: 10px;
+    max-width: 50%;
+  }
