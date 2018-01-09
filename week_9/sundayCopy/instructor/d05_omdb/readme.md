@@ -11,7 +11,7 @@
 ## Tools
 
 * Backbone
-* jQuery
+* jQOMDB APIuery
 * [OMDB API](http://www.omdbapi.com/) - Please explore the docs to discover how to use OMDB API to get the response data we desire.  
 
 ## Step 1 - Explore the OMDB API
