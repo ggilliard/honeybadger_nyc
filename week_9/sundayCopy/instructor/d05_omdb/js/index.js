@@ -1,7 +1,3 @@
-const $ = require('jquery')
-require('whatwg-fetch') 
-
-
 function getImageTemplate(data = {}) {
   if(!data.img) {
     return ''
@@ -26,7 +22,7 @@ function render($parent, listdata) {
 }
     
 function search(title) {
-    const query = qs({
+    const query = $.ajax({
     apiKey: '9fc71b6c',
     apiURL: 'http://www.omdbapi.com/',
     t: title,
