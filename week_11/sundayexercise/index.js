@@ -4,28 +4,26 @@ const logger = require('morgan');
 
 app.use(logger('dev'));
 
-
-app.get('/', function (req, res) {
-    res.send('/');
-});
-
 app.get('/about', function (req, res) {
     res.send('This is Page About Joke');
 });
 
 app.get('/bananas', function (req, res) {
-    res.send('');
+    res.send('Banana Joke Holder');
 });
 
 app.get('/joke', function (req, res) {
-    res.send('/');
+    const jokes = ['JOKE 1', 'JOKE 2', 'JOKE 3']
+    const index = Math.floor(Math.random * Math.floor(2))
+    res.send(jokes[index]);
 });
 
 app.get('/joke/:name', function (req, res) {
-    res.send('/');
+    const name = req.params.name;
+    res.send(`Funny Joke For ${name}`);
 });
-
-app.listen(300)
+//http://localhost:3000/joke/Gina
+app.listen(3000)
 
 //CREATE A NEW APPLICATION INSIDE A JOKES_APP FOLDER
 // CREATE A PACKAGE JSON
