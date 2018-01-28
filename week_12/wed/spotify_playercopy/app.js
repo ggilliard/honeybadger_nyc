@@ -64,8 +64,7 @@ function normalizeTrackData(track) {
         album: {
             name: albumName
         },
-        name: trackName,
-        artists: [{
+        name: trackName, artists: [{
             name: artistName
         }]
     } = track;
@@ -94,12 +93,15 @@ app.get('/:artist', function(req, res) {
             return getTopTracks(_access_token, id);
         })
         .then(function(topTracks) {
-            const normalizeTrackData = topTracks.tracks.map(function(track){
+            const normalizedTracks = topTracks.tracks.map(function(track) {
                 return normalizeTrackData(track);
-            },
-            
+            })
 
-            res.render('artists');
+            const result = {
+                tracks: normalizedTracks
+            }
+
+            res.render('artists', result);
         })
 });
 

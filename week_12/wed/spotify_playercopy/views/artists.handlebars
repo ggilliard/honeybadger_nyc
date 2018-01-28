@@ -1,8 +1,5 @@
-<h1>This is artist template page</h1>
-
-<div class="query">
-{{#if tracks.album.images.[0]}}
-    <img src="{{tracks.album.images.[0].url}}" class="img.responsive">
-{{/if}}
-</div>
-
+{{#each tracks}}
+    <h1>{{artistName}}</h1>
+    <h2>{{trackName}}</h2>
+    <h3>{{albumName}}</h3>
+{{/each}}
