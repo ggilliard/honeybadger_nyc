@@ -1,10 +1,16 @@
 const express = require('express');
 const logger = require('morgan');
 const request = require('request-promise');
+const exphbs  = require('express-handlebars');
+const favicon = require('serve-favicon');
+const path = require('path');
 const { clientId, clientSecret }= require('./api_key');
 const app = express();
 
 app.use(logger('dev'));
+app.engine('handlebars', exphbs({defaultLayout: 'index'}));
+app.set('view engine', 'handlebars');
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 var authOptions = {
     url: 'https://accounts.spotify.com/api/token',
@@ -37,7 +43,6 @@ function getRequestOptions(url, access_token, queryOptions = {}) {
     return options;
 }
 
-
 function getArtistByName(access_token, artist) {
     var options = getRequestOptions('https://api.spotify.com/v1/search', access_token, { q: artist, type: 'artist' })
 
@@ -65,12 +70,13 @@ app.get('/:artist', function(req, res) {
             return getArtistByName(_access_token, artist)
         })
         .then(function(data) {
-            const id = data.artists.items[0].id;
+            const artist = data.artists.items[0] || {};
+            const id = artist.id;
 
             return getTopTracks(_access_token, id);
         })
         .then(function(topTracks) {
-            res.send(topTracks);
+            res.render('artists');
         })
 });
 
