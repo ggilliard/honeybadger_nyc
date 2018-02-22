@@ -10,6 +10,8 @@ const app = express();
 app.use(logger('dev'));
 app.engine('handlebars', exphbs({defaultLayout: 'index'}));
 app.set('view engine', 'handlebars');
+app.use(express.static('public'));
+app.use('/jquery', express.static(__dirname + '/node.modules/jquery/dist/'));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 var authOptions = {
@@ -62,17 +64,23 @@ function getTopTracks(access_token, id) {
 function normalizeTrackData(track) {
     const {
         album: {
-            name: albumName
+            name: albumName,    
+            images: [{
+                url: imageURL
+            }]
         },
         name: trackName, artists: [{
             name: artistName
-        }]
+        }],
+        id: trackId
     } = track;
 
     return {
         albumName,
         trackName,
-        artistName
+        artistName,
+        imageURL,
+        trackId
     }
 }
 
@@ -104,6 +112,14 @@ app.get('/:artist', function(req, res) {
             res.render('artists', result);
         })
 });
+
+// app.get('/track/:id', function(req, res) {
+//     const id = req.params.id;
+//     console.log(id);
+//     res.send("Test");
+// });
+//not an actual route won't render a page. it's route for the ajax (client side "browser")//
+
 
 app.listen(3000, function() {
     console.log('Listening on port 3000');

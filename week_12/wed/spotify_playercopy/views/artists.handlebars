@@ -1,5 +1,9 @@
+
+<div id="container">
 {{#each tracks}}
-    <h1>{{artistName}}</h1>
-    <h2>{{trackName}}</h2>
-    <h3>{{albumName}}</h3>
+    <h1 id="name">{{artistName}}</h1>
+    <h2 id="track">{{trackName}}</h2>
+    <h3 id="album">{{albumName}}</h3>
+    <img src="{{imageURL}}" alt="album images" />
 {{/each}}
+</div>
